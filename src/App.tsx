@@ -1,24 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
+import {useTimer} from './useTimer';
+import {Timer} from './Timer'
 import './App.css';
 
 const App: React.FC = () => {
+  const {pause, play, reset, time, timeInSeconds, status} = useTimer({minutes: "3"});
+  // play();
+useEffect (() => {
+ console.log(time);
+}, [time]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+     <div className="App">
+      {/* <button>Start Timer</button>
+      {timeInSeconds} */}
+      < Timer 
+      time={time} 
+      status={status} 
+      onPlay={play} 
+      onReset={reset} 
+      onPause={pause} 
+      />
     </div>
   );
 }
